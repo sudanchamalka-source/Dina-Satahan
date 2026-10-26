@@ -1,5 +1,5 @@
 // Service worker – offline භාවිතය සඳහා. අලුත් version එකක් දැමූ විට CACHE නම වෙනස් කරන්න (v1 -> v2).
-const CACHE = 'ict-satahan-v1';
+const CACHE = 'ict-satahan-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
