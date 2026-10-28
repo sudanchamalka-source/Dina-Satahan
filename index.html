@@ -34,6 +34,7 @@ th,td{border:1px solid var(--bd);padding:6px 8px;vertical-align:top;text-align:l
 @media print{body{background:#fff;color:#000}.nopr,header,nav{display:none!important}main{padding:0;max-width:none}
 .card{border:0;padding:0;margin:0;background:#fff}.pg{break-after:page}.pg:last-child{break-after:auto}
 th,td{border:1px solid #444;color:#000;font-size:11.5px}th{background:#eee;color:#000}.dt{min-width:0}.dt td{height:56px}.dt th,.dt td{font-size:11px;padding:4px}.ptl{color:#000}.meta,.sub{color:#333}.tw{overflow:visible}}
+.mvn{font-size:.85em;color:#b45309;line-height:1.35}.mvd{color:#b45309}
 </style>
 <style id="calcss">
 :root{--hol:#fbdcd8;--holt:#a1271a;--vac:#dcedf9;--vact:#1a5a85;--ext:#fdeccb;--extt:#8a5a00;--wk:#eceff5;--wkt:#7a8296}
@@ -256,6 +257,50 @@ body.bw .cvi{filter:grayscale(1)}
 body.bw .cvi .pn{border-color:#000!important}
 body.bw .cvi .pn,body.bw .cvi .cv_tm,body.bw .cvi .cv_sc2{color:#000!important}
 </style>
+<style id="bigdiary">
+/* දින සටහන – ලොකු අකුරු + අත්සන් දෙකට ඉඩ */
+.dp .dt th,.dp .dt td{font-size:var(--dfs,15px);line-height:1.45;padding:6px 8px}
+.dp .dt th{font-weight:700}
+.dp .dt td.gb{font-size:calc(var(--dfs,15px) + 1px)}
+.dp .dt td{height:58px}
+.sgd{display:flex;justify-content:space-between;gap:70px;margin:56px 20px 6px;font-size:15px;break-inside:avoid;page-break-inside:avoid}
+.sgd .sgs{flex:0 1 310px;text-align:center;border-top:1.5px solid currentColor;padding-top:5px;font-weight:700}
+@media print{.dp .dt th,.dp .dt td{font-size:var(--dfs,14px);padding:5px 7px}.dp .dt td.gb{font-size:calc(var(--dfs,14px) + 1px)}.dp .dt td{height:50px}.sgd{color:#000;font-size:14px}}
+/* මුද්‍රණ ප්‍රමාණය මැනීමේදී (fit) මුද්‍රණ පෙනුමම යෙදීමට */
+body.pm .nopr{display:none!important}
+body.pm .ptl{font-size:20px;padding:3px 16px;margin-bottom:3px}
+body.pm .sch{font-size:15px;margin:0 0 3px}
+body.pm .chips span{padding:1px 9px;font-size:11px}
+body.pm .dtl b{font-size:12.5px;padding:1px 14px}
+body.pm .ntn{font-size:11px;margin:3px 0 0}
+
+/* ===== දින සටහන: පිටුව පුරා සමාන උසැති පේළි 8 ===== */
+.card.dp{display:flex;flex-direction:column;box-sizing:border-box}
+.dp>.pk,.dp>.tdy{align-self:flex-start}
+.dp .tw{flex:1 1 auto;min-height:0;position:relative;overflow:visible}
+.dp .dt{position:absolute;left:0;top:0;width:100%;min-width:0;height:auto!important}
+.dp .dt td,.dp .dt tr.emr td{height:auto!important;vertical-align:middle}
+.dp .dt td[contenteditable]:not(.fre){vertical-align:middle}
+.dp .sgd{margin:10px 20px 2px}
+#sDay .card.dp{height:794px;min-height:0}
+#sDay .dp .dt th{position:static!important}
+.dt tr.emr td{color:var(--mu);text-align:center}
+.dt tr.emr td.fre{font-style:italic;letter-spacing:.3px}
+@media print{#sDay .card.dp{height:187mm}}
+.card.dp{position:relative}
+.dp .ptl{font-size:20px;padding:3px 16px;margin:0 auto 3px;border-width:2px}
+.dp .sch{font-size:15px;margin:0 0 3px}
+.dp .meta.chips{margin:0 0 4px}.dp .chips span{padding:1px 9px;font-size:11px}
+.dp .meta{margin-bottom:4px}
+.dp .dtl b{font-size:12.5px;padding:1px 14px}
+.dp>.pk{position:absolute;top:4px;left:8px;margin:0;z-index:2}
+.dp>.tdy{position:absolute;top:4px;right:8px;margin:0}
+#sDay .card.dp{padding:12px 16px}
+.dp .dt th,.dp .dt td{padding:3px 5px!important;line-height:1.3!important}
+.dp .sgd{margin:42px 20px 0;font-size:13px}
+
+
+</style>
 </head>
 <body>
 <header><button class="thm nopr" onclick="tgTheme()" title="Dark / Light">🌓</button><h1>📘 ICT – දින සටහන්, වාර සටහන් හා පාඩම් සැලසුම්</h1><p>කාලසටහන අනුව ශ්‍රේණි 10, 11, 12, 13 සඳහා ස්වයංක්‍රීයව සැකසේ</p></header>
@@ -265,7 +310,7 @@ body.bw .cvi .pn,body.bw .cvi .cv_tm,body.bw .cvi .cv_sc2{color:#000!important}
 <div style="grid-column:1/-1"><label>🏫 පාසලේ නම (වෙනස් කළ හැක)</label><input id="school" onchange="renderAll()" value="B/Denzil Kobbekaduwa Maha Vidyalaya, Hali Ela"></div>
 <div><label>ගුරුවරයා / ගුරුවරිය</label><input id="teacher" onchange="renderAll()" value="Sudan Chamalka"></div>
 <div><label>විෂය</label><input id="subj" onchange="renderAll()" value="ICT"></div><div><label>🗓️ වර්ෂය (කවරයට)</label><input id="yr" onchange="renderAll()" placeholder="ස්වයංක්‍රීය (උදා: 2026)"></div><div style="grid-column:1/-1"><label>🏅 පාසලේ ලාංජනය (කවර සඳහා – රූපයක් තෝරන්න)</label><div style="display:flex;gap:10px;align-items:center"><input type="file" id="logoF" accept="image/*" onchange="logoUp(this)"><img id="logoPv" alt="" style="display:none;height:44px;width:44px;object-fit:contain;border:1px solid var(--bd);border-radius:8px;background:#fff"><button class="btn g" style="margin:0;white-space:nowrap" onclick="logoClr()">ඉවත් කරන්න</button></div></div>
-<div><label>වාරය</label><select id="term"><option value="1">පළමුවන වාරය</option><option value="2">දෙවන වාරය</option><option value="3">තුන්වන වාරය</option></select></div><div><label>13 ශ්‍රේණිය – විෂය නිර්දේශ වාරය</label><select id="term13" onchange="renderAll()"><option value="auto">ස්වයංක්‍රීය (තෝරාගත් වාරයට වඩා එකක් පසුපසින්: 3 → 2)</option><option value="1">පළමුවන වාරය</option><option value="2">දෙවන වාරය</option><option value="3">තුන්වන වාරය</option></select></div>
+<div><label>වාරය</label><select id="term"><option value="1">පළමුවන වාරය</option><option value="2">දෙවන වාරය</option><option value="3">තුන්වන වාරය</option></select></div><div><label>12 ශ්‍රේණිය – විෂය නිර්දේශ වාරය</label><select id="term12" onchange="renderAll()"><option value="auto">ස්වයංක්‍රීය (තෝරාගත් වාරයටම සමානයි)</option><option value="1">පළමුවන වාරය</option><option value="2">දෙවන වාරය</option><option value="3">තුන්වන වාරය</option></select></div><div><label>13 ශ්‍රේණිය – විෂය නිර්දේශ වාරය</label><select id="term13" onchange="renderAll()"><option value="auto">ස්වයංක්‍රීය (තෝරාගත් වාරයට වඩා එකක් පසුපසින්: 3 → 2)</option><option value="1">පළමුවන වාරය</option><option value="2">දෙවන වාරය</option><option value="3">තුන්වන වාරය</option></select></div>
 <div><label>දින සටහන් – සිට</label><input type="date" id="from"></div>
 <div><label>දින සටහන් – දක්වා</label><input type="date" id="to"></div>
 <div><label>අමතර නිවාඩු දින (2026-10-30, ...)</label><input id="skip"></div>
@@ -410,7 +455,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return 
 function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function sd(d){return d.slice(5).replace('-','.')}
 function dl(d){return d+'<br>('+DN[new Date(d+'T00:00:00').getDay()]+')'}
-var SK=['term13','yr','school','teacher','subj','res','fb','skip','end10','end11','end13'];
+var SK=['term12','term13','yr','school','teacher','subj','res','fb','skip','end10','end11','end13'];
 function load(){try{TT=JSON.parse(localStorage.getItem('ict_tt')||'{}');for(var _k in TT)if(TT[_k]=='11')TT[_k]='11A';var s=JSON.parse(localStorage.getItem('ict_plan2')||'{}');SK.forEach(function(k){if(s[k]!=null)$(k).value=s[k]})}catch(e){}}
 function save(){try{localStorage.setItem('ict_tt',JSON.stringify(TT));var s={};SK.forEach(function(k){s[k]=$(k).value});localStorage.setItem('ict_plan2',JSON.stringify(s))}catch(e){}}
 function gdata(g){
@@ -425,7 +470,7 @@ function gdata(g){
   c:(l[3]||('හැඳින්වීම හා පසුබිම; '+l[1]+'; ප්‍රධාන සංකල්ප හා පද; උදාහරණ හා නිරූපණ; ප්‍රායෝගික ක්‍රියාකාරකම; සාරාංශය')).split(/[;\n]+/).map(function(x){return x.trim()}).filter(Boolean)}})});
  return CACHE[g]={by:by,terms:terms,units:units};
 }
-function ct(g,t){if(g!='13')return t;var v=$('term13').value;return v=='auto'?Math.max(1,t-1):+v}
+function ct(g,t){if(g=='12'){var v2=$('term12').value;return v2=='auto'?t:+v2}if(g!='13')return t;var v=$('term13').value;return v=='auto'?Math.max(1,t-1):+v}
 function slots(g,t){
  var G=gdata(g),ex={},out=[];
  ($('skip').value||'').split(/[ ,;]+/).forEach(function(x){if(x)ex[x]=1});
@@ -433,8 +478,9 @@ function slots(g,t){
   for(;cur<=end;cur.setDate(cur.getDate()+1)){var ds=fmt(cur),dw=cur.getDay();if(dw==0||dw==6||HOL[ds]||ex[ds])continue;
    for(var p=1;p<=8;p++)if(TT[dw+'-'+p]==g)out.push({d:ds,p:p,g:g})}});
  var q=G.terms[ct(g,t)].map(function(c){return {c:c,r:G.by[c].p,j:0,tot:G.by[c].p}});
- var ek=0;out.forEach(function(s){var nk=s.d+'|'+s.p+'|'+g;if(NT[nk]!=null){s.nt=NT[nk];s.c=null;return}if(q.length){var o=q[0];s.c=o.c;s.j=o.j;s.tot=o.tot;o.j++;o.r--;if(o.r<=0)q.shift()}else{s.c=null;s.k=ek++}});
- return {s:out,left:q.reduce(function(a,b){return a+b.r},0)};
+ var ek=0,pend=[];out.forEach(function(s){var nk=s.d+'|'+s.p+'|'+g;if(NT[nk]!=null){s.nt=NT[nk];s.c=null;pend.push({d:s.d,p:s.p,r:s.nt,o:s});return}if(pend.length){s.mv=pend;pend=[]}if(q.length){var o=q[0];s.c=o.c;s.j=o.j;s.tot=o.tot;o.j++;o.r--;if(o.r<=0)q.shift()}else{s.c=null;s.k=ek++}});
+ out.forEach(function(s){if(s.mv)s.mv.forEach(function(m){m.o.pl=s.c;m.o.pt=s.d;m.o.pq=s.p})});
+ return {s:out,pend:pend,left:q.reduce(function(a,b){return a+b.r},0)};
 }
 function endMode(g){var e=$('end'+g.replace(/[AB]$/,''));return e&&e.value=='qp'?'qp':'rev'}
 function endTitle(g){return endMode(g)=='qp'?'ප්‍රශ්න පත්‍ර සාකච්ඡාව හා පුහුණුව':'පුනරීක්ෂණය (විෂය නිර්දේශය අවසන්)'}
@@ -442,10 +488,11 @@ function endUn(g,k){var us=gdata(g).units;if(!us.length)return '—';var u=us[Ma
 function endDay(g,un){return endMode(g)=='qp'?'ප්‍රශ්න පත්‍ර පුහුණුව – '+un+'; ප්‍රශ්නවලට පිළිතුරු සැපයීම; පිළිතුරු සාකච්ඡාව හා ලකුණු දීමේ පටිපාටිය; දුර්වල ප්‍රදේශ හඳුනා ගෙන නිවැරදි කිරීම':'පුනරීක්ෂණය – '+un+'; ප්‍රධාන සංකල්ප හා පද සාරාංශගත කිරීම; ප්‍රශ්නෝත්තර හා ක්‍රියාකාරකම්; දුර්වල ප්‍රදේශ නැවත පැහැදිලි කිරීම'}
 function head(t,g){return '<h2 class="ptl">'+(g?'📘 වාර සටහන':'📅 දින සටහන')+'</h2><div class="sch">🏫 '+esc($('school').value)+'</div><div class="meta chips"><span>👩‍🏫 '+esc($('teacher').value)+'</span><span>📚 '+esc($('subj').value)+'</span>'+(g?'<span>🎓 '+g+' ශ්‍රේණිය</span><span>🗓️ '+TNAME[g?ct(g,t):t]+'</span>':'')+'</div>'}
 function ntSave(){try{localStorage.setItem('ict_nt',JSON.stringify(NT))}catch(e){}}
-function ntSet(d,p,g){var k=d+'|'+p+'|'+g,r=prompt('පාඩම නොපැවැත්වීමට හේතුව (උදා: විභාගය / පාසල් උත්සවය / නිල රාජකාරි / අසනීප):',NT[k]||'');if(r===null)return;r=r.trim();if(r)NT[k]=r;else delete NT[k];ntSave();renderAll()}
+function ntSet(d,p,g){var k=d+'|'+p+'|'+g;if(NT[k]!=null){var ok=confirm('⚠️ මෙම කාලච්ඡේදය සඳහා නොපැවැත්වීමේ හේතුව කලින් ඇතුළත් කර ඇත:\n\n"'+NT[k]+'"\n\nහේතුව වෙනස් කිරීමට OK ඔබන්න.');if(!ok)return}var r=prompt('පාඩම නොපැවැත්වීමට හේතුව (උදා: විභාගය / පාසල් උත්සවය / නිල රාජකාරි / අසනීප):',NT[k]||'');if(r===null)return;r=r.trim();if(NT[k]!=null&&r==NT[k]){alert('මෙම හේතුව කලින් ඇතුළත් කර ඇත.');return}if(r)NT[k]=r;else delete NT[k];ntSave();renderAll()}
 function ntClr(d,p,g){delete NT[d+'|'+p+'|'+g];ntSave();renderAll()}
-function ntDay(d){var t=+$('term').value,r=prompt('මුළු දිනයේම පාඩම් නොපැවැත්වීමට හේතුව (උදා: පාසල් උත්සවය / විභාගය):','');if(r===null)return;r=r.trim();if(!r)return;GS.forEach(function(g){slots(g,t).s.forEach(function(s){if(s.d==d)NT[s.d+'|'+s.p+'|'+g]=r})});ntSave();renderAll()}
-function ntNote(a){a=a.filter(function(s){return s.nt!=null});if(!a.length)return '';return '<p class="ntn"><b>🚫 නොපැවැත්වූ කාලච්ඡේද:</b> '+a.map(function(s){return sd(s.d)+' (කා.ච්. '+s.p+') – '+esc(s.nt)}).join('; ')+'</p>'}
+function ntDay(d){var t=+$('term').value,all=[],dn=[];GS.forEach(function(g){slots(g,t).s.forEach(function(s){if(s.d==d){all.push(s);if(NT[s.d+'|'+s.p+'|'+s.g]!=null)dn.push(s)}})});if(all.length&&dn.length==all.length){alert('⚠️ මෙම දිනය සඳහා නොපැවැත්වීමේ හේතුව කලින් ඇතුළත් කර ඇත.');return}if(dn.length)alert('සටහන: මෙම දිනයේ කාලච්ඡේද '+dn.length+' ක් සඳහා හේතුව කලින් ඇතුළත් කර ඇත. ඒවා නැවත ඇතුළත් නොකෙරේ.');var r=prompt('මුළු දිනයේම පාඩම් නොපැවැත්වීමට හේතුව (උදා: පාසල් උත්සවය / විභාගය):','');if(r===null)return;r=r.trim();if(!r)return;GS.forEach(function(g){slots(g,t).s.forEach(function(s){if(s.d==d&&NT[s.d+'|'+s.p+'|'+g]==null)NT[s.d+'|'+s.p+'|'+g]=r})});ntSave();renderAll()}
+function mvNote(A){var o=[];A.forEach(function(s){(s.mv||[]).forEach(function(m){o.push(sd(m.d)+' (කා.ච්. '+m.p+') – '+esc(m.r)+' නිසා නොපැවැත්වුණි; '+sd(s.d)+' (කා.ච්. '+s.p+') වෙත මාරු කළා')})});return o.length?'<div class="mvn">'+o.join('<br>')+'</div>':''}
+function ntNote(a){if(!a||!a.length)return '';return '<p class="ntn"><b>🚫 නොපැවැත්වූ කාලච්ඡේද (වාරය තුළ මාරු කළ නොහැකි):</b> '+a.map(function(s){return sd(s.d)+' (කා.ච්. '+s.p+') – '+esc(s.r)}).join('; ')+'</p>'}
 function bl(x){var a=String(x||'').split(/[;\n]+/).map(function(y){return y.trim()}).filter(Boolean);return a.length?'<ul>'+a.map(function(y){return '<li>'+esc(y)+'</li>'}).join('')+'</ul>':'<ul><li></li></ul>'}
 function gname(g){return (g=='13'||g=='12')?'(උසස් පෙළ)':'(සාමාන්‍ය පෙළ)'}
 function termHTML(t){
@@ -473,9 +520,9 @@ function termHTML(t){
     +'<td contenteditable="true">'+(l?bl(l.r):'<ul>'+r.rv.cu.map(function(y){return '<li>'+esc(y)+'</li>'}).join('')+'</ul>')+'</td>'
     +'<td contenteditable="true">'+(l?bl(l.o):'')+'</td>'
     +'<td class="ct">'+P+'</td><td class="ct">'+dt+'</td><td contenteditable="true"></td>'
-    +'<td contenteditable="true">'+(n<P?'<span class="wa">කා.ච්. '+(P-n)+' ක් මදි</span>':'')+'</td>'
+    +'<td contenteditable="true">'+mvNote(A)+(n<P?'<span class="wa">කා.ච්. '+(P-n)+' ක් මදි</span>':'')+'</td>'
     +'<td class="nopr ck"><input type="checkbox" '+(DONE[K]?'checked':'')+' onchange="tgd(this,\''+K+'\')"></td></tr>'});
-  h+='</tbody></table></div>'+ntNote(R.s)+'<div class="sg sg2"><span><b>ගුරුභවතාගේ අත්සන</b><br><br>..................</span><span><b>විදුහල්පතිතුමාගේ අත්සන</b><br><br>....................</span></div></div>';
+  h+='</tbody></table></div>'+ntNote(R.pend)+'<div class="sg sg2"><span><b>ගුරුභවතාගේ අත්සන</b><br><br>..................</span><span><b>විදුහල්පතිතුමාගේ අත්සන</b><br><br>....................</span></div></div>';
  });
  return h||'<div class="card empty">පළමුව ඉහත කාලසටහනේ ඔබේ කාලච්ඡේද (10 / 11 A / 11 B / 12 / 13) තෝරන්න.</div>';
 }
@@ -486,14 +533,15 @@ function dayHTML(t){
  if(!all.length)return '<div class="card empty">තෝරා ඇති දින පරාසයේ කාලච්ඡේද නැත. කාලසටහන හෝ දින පරාසය පරීක්ෂා කරන්න.</div>';
  var days={},ord=[];all.forEach(function(s){if(!days[s.d]){days[s.d]=[];ord.push(s.d)}days[s.d].push(s)});
  var h='';
- ord.forEach(function(d){var R=days[d];
-  h+='<div class="card pg dp wd'+new Date(d+'T00:00:00').getDay()+'" data-pk="1"><label class="nopr pk"><input type="checkbox" class="pkc" checked onchange="pkTog(this)"> මුද්‍රණයට</label>'+(d==fmt(new Date())?'<span class="tdy nopr">අද</span>':'')+head(t,0)+'<div class="meta dtl"><b>📆 දිනය: '+d.replace(/-/g,'.')+' ('+DN[new Date(d+'T00:00:00').getDay()]+')</b></div><div class="tw"><table class="dt"><colgroup><col style="width:9%"><col style="width:6%"><col style="width:8%"><col style="width:6%"><col style="width:13%"><col style="width:16%"><col style="width:18%"><col style="width:12%"><col style="width:12%"></colgroup><tr><th>දිනය</th><th>ශ්‍රේණිය</th><th>විෂය</th><th>කාලච්ඡේදය</th><th>නිපුණතාව</th><th>නිපුණතා මට්ටම</th><th>විෂය අන්තර්ගතය</th><th>ගුණාත්මක යෙදවුම්</th><th>ප්‍රතිපෝෂණය</th></tr>';
-  R.forEach(function(s,i){var l=(!isBlk(s.g)&&s.c)?gdata(s.g).by[s.c]:null,ct='',lv='සමාලෝචනය / ප්‍රතිචාර / ඇගයීම',un='—',rs=$('res').value,fbk=$('fb').value;
+ ord.forEach(function(d){var R=days[d];var P8=[];for(var q8=1;q8<=8;q8++){var f8=null;R.forEach(function(x){if(x.p==q8)f8=x});P8.push(f8||{emp:q8})}
+  h+='<div class="card pg dp wd'+new Date(d+'T00:00:00').getDay()+'" data-pk="1"><label class="nopr pk"><input type="checkbox" class="pkc" checked onchange="pkTog(this)"> මුද්‍රණයට</label>'+(d==fmt(new Date())?'<span class="tdy nopr">අද</span>':'')+head(t,0)+'<div class="meta dtl"><b>📆 දිනය: '+d.replace(/-/g,'.')+' ('+DN[new Date(d+'T00:00:00').getDay()]+')</b> <span class="nopr">'+'<button class="nb" onclick="ntDay(\''+d+'\')">🚫 මුළු දිනයම</button>'+'</span></div><div class="tw"><table class="dt"><colgroup><col style="width:4%"><col style="width:5%"><col style="width:5%"><col style="width:14%"><col style="width:11%"><col style="width:25%"><col style="width:14%"><col style="width:22%"></colgroup><tr><th>ශ්‍රේණිය</th><th>විෂය</th><th>කාලච්ඡේදය</th><th>නිපුණතාව</th><th>නිපුණතා මට්ටම</th><th>විෂය අන්තර්ගතය</th><th>ගුණාත්මක යෙදවුම්</th><th>ප්‍රතිපෝෂණය</th></tr>';
+  P8.forEach(function(s,i){if(s.emp){h+='<tr class="emr">'+'<td>—</td><td>—</td><td>'+String(s.emp).padStart(2,'0')+'</td><td colspan="5" contenteditable="true" class="fre">කාලච්ඡේදයක් නැත</td></tr>';return}var l=(!isBlk(s.g)&&s.c)?gdata(s.g).by[s.c]:null,ct='',lv='සමාලෝචනය / ප්‍රතිචාර / ඇගයීම',un='—',rs=$('res').value,fbk=$('fb').value;
    if(l){var n=l.c.length,a=Math.floor(s.j*n/s.tot),b=Math.floor((s.j+1)*n/s.tot),sl=l.c.slice(a,b);if(!sl.length)sl=[l.c[Math.min(a,n-1)]];ct=sl.join('; ');rs=lsRes(l,sl,s.g);fbk=lsFb(l,s,sl);lv='<b>'+l.code+'</b> '+esc(l.title)+(s.tot>1?' <span class="sub">('+(s.j+1)+'/'+s.tot+')</span>':'')}
    if(!isBlk(s.g)&&!l&&s.k!=null){un=endUn(s.g,s.k);lv=endTitle(s.g);ct=endDay(s.g,un)}
-   var nt=!isBlk(s.g)&&s.nt!=null;if(nt){un='—';lv='<span class="wa">🚫 පාඩම නොපැවැත්වුණි</span>';ct='හේතුව: '+esc(s.nt)}
-   if(isBlk(s.g)){un='';lv='';ct='';rs='';fbk=''}h+='<tr class="gr'+s.g+(nt?' ntr':'')+(isBlk(s.g)?' blkr':'')+'">'+(i?'':'<td class="gdt" rowspan="'+R.length+'">'+dl(d)+'<div class="nopr"><button class="nb" onclick="ntDay(\''+d+'\')">🚫 මුළු දිනයම</button></div></td>')+'<td class="gb">'+s.g+'</td><td>'+esc($('subj').value)+'</td><td>'+String(s.p).padStart(2,'0')+'<div class="nopr"><button class="nb" title="පාඩම නොපැවැත්වුණා නම් හේතුව ඇතුළත් කරන්න" onclick="ntSet(\''+d+'\','+s.p+',\''+s.g+'\')">'+(nt?'✏️':'🚫')+'</button>'+(nt?'<button class="nb" title="ඉවත් කරන්න" onclick="ntClr(\''+d+'\','+s.p+',\''+s.g+'\')">↩️</button>':'')+'</div></td><td contenteditable="true">'+(l?esc(l.unit):esc(un))+'</td><td contenteditable="true">'+lv+'</td><td contenteditable="true">'+esc(ct)+'</td><td contenteditable="true">'+esc(rs)+'</td><td contenteditable="true">'+esc(fbk)+'</td></tr>'});
-  h+='</table></div><div class="sg" style="margin-top:50px"><span>.............................<br>ගුරුභවතාගේ අත්සන</span><span>.............................<br>විදුහල්පතිතුමාගේ අත්සන</span></div></div>'});
+   var nt=!isBlk(s.g)&&s.nt!=null;if(nt){var pl=s.pl?gdata(s.g).by[s.pl]:null;un=pl?pl.unit:'—';lv='<span class="wa">🚫 පාඩම නොපැවැත්වුණි</span>'+(pl?'<div><b>'+pl.code+'</b> '+esc(pl.title)+'</div>':'')+(s.pt?'<div class="sub mvd">↪ '+sd(s.pt)+' (කා.ච්. '+s.pq+') වෙත මාරු කළා</div>':'');ct='හේතුව: '+esc(s.nt)}
+   if(!nt&&s.mv&&!isBlk(s.g))lv+='<div class="sub mvd">↪ '+s.mv.map(function(m){return sd(m.d)+' (කා.ච්. '+m.p+') දින සිට මාරු වූ පාඩම'}).join('; ')+'</div>';
+   if(isBlk(s.g)){un='';lv='';ct='';rs='';fbk=''}h+='<tr class="gr'+s.g+(nt?' ntr':'')+(isBlk(s.g)?' blkr':'')+'">'+'<td class="gb">'+s.g+'</td><td>'+esc($('subj').value)+'</td><td>'+String(s.p).padStart(2,'0')+'<div class="nopr"><button class="nb" title="පාඩම නොපැවැත්වුණා නම් හේතුව ඇතුළත් කරන්න" onclick="ntSet(\''+d+'\','+s.p+',\''+s.g+'\')">'+(nt?'✏️':'🚫')+'</button>'+(nt?'<button class="nb" title="ඉවත් කරන්න" onclick="ntClr(\''+d+'\','+s.p+',\''+s.g+'\')">↩️</button>':'')+'</div></td><td contenteditable="true">'+(l?esc(l.unit):esc(un))+'</td><td contenteditable="true">'+lv+'</td><td contenteditable="true">'+esc(ct)+'</td><td contenteditable="true">'+esc(rs)+'</td><td contenteditable="true">'+esc(fbk)+'</td></tr>'});
+  h+='</table></div><div class="sg sgd"><span class="sgs">ගුරුභවතාගේ අත්සන</span><span class="sgs">විදුහල්පතිතුමාගේ අත්සන</span></div></div>'});
  return h;
 }
 function renderAll(){save();var t=+$('term').value;var a=termHTML(t),b=dayHTML(t);$('sTerm').innerHTML=(a.indexOf('data-pk')>=0?tbar('sTerm'):'')+a;$('sDay').innerHTML=(b.indexOf('data-pk')>=0?tbar('sDay')+dayCover(t):'')+b;$('sCal').innerHTML=calHTML();document.querySelectorAll('#sTerm .card[data-pk]').forEach(pbUpd);updCnt('sTerm');updCnt('sDay')}
@@ -657,13 +705,26 @@ function LSC(c){
 }
 
 /* දින සටහන – මුද්‍රණයේදී සෑම දිනයක්ම A4 එක් පිටුවකට ස්වයංක්‍රීයව ගැළපීම */
-(function(){var W=1040,H=690,S=[];
-function fit(){S=[];document.querySelectorAll('#sDay .card.dp').forEach(function(c){var o=c.querySelector('.pkc');if(o&&!o.checked)return;
- S.push([c,c.getAttribute('style')]);var st=c.style;st.zoom='1';st.width=W+'px';st.minWidth=W+'px';st.maxWidth=W+'px';st.minHeight='0';st.margin='0';st.padding='0';
- var h=c.offsetHeight,z=h>H?Math.max(.4,H/h):1;
- if(z<1){st.zoom=z;var w=W/z;st.width=w+'px';st.minWidth=w+'px';st.maxWidth=w+'px';h=c.offsetHeight*z;if(h>H){z=Math.max(.4,z*H/h*.98);st.zoom=z;w=W/z;st.width=w+'px';st.minWidth=w+'px';st.maxWidth=w+'px'}}})}
-function undo(){S.forEach(function(x){if(x[1]==null)x[0].removeAttribute('style');else x[0].setAttribute('style',x[1])});S=[]}
-window.addEventListener('beforeprint',fit);window.addEventListener('afterprint',undo)})();
+(function(){var W=1040,H=712,S=[];
+ function setW(st,z){var w=W/z;st.width=w+'px';st.minWidth=w+'px';st.maxWidth=w+'px'}
+ function fit(){S=[];document.body.classList.add('pm');document.querySelectorAll('#sDay .card.dp').forEach(function(c){var o=c.querySelector('.pkc');if(o&&!o.checked)return;
+  S.push([c,c.getAttribute('style')]);var st=c.style;st.zoom='1';setW(st,1);st.minHeight='0';st.margin='0';st.padding='0';st.height=H+'px';eqFit(c)})}
+ function undo(){document.body.classList.remove('pm');S.forEach(function(x){if(x[1]==null)x[0].removeAttribute('style');else x[0].setAttribute('style',x[1])});S=[];if(window.fitAll)fitAll()}
+ window.addEventListener('beforeprint',fit);window.addEventListener('afterprint',undo)})();
+</script>
+<script>
+/* දින සටහන: සමාන උසැති පේළි 8ක් පිටුව පුරා පිරෙන සේ අකුරු ප්‍රමාණය ස්වයංක්‍රීයව සකසයි */
+function eqFit(c){var tb=c.querySelector('table.dt'),tw=c.querySelector('.tw');if(!tb||!tw||!tw.clientHeight)return;
+ var rs=[].slice.call(tb.rows),hd=rs[0],bd=rs.slice(1),n=bd.length;if(!n)return;
+ function put(f){c.style.setProperty('--dfs',f+'px');tb.style.height='';hd.style.height='';bd.forEach(function(r){r.style.height=''});
+  var H=tw.clientHeight,hh=hd.offsetHeight,rh=Math.floor((H-hh)/n);bd.forEach(function(r){r.style.height=rh+'px'});
+  return bd.every(function(r){return r.offsetHeight<=rh+1})}
+ var lo=6.5,hi=17,f;if(put(hi))f=hi;else if(!put(lo))f=lo;else{while(hi-lo>.25){var m=(lo+hi)/2;if(put(m))lo=m;else hi=m}f=lo}
+ put(f);tb.style.height=tw.clientHeight+'px'}
+function fitAll(){var s=document.getElementById('sDay');if(!s||!s.classList.contains('on'))return;[].forEach.call(s.querySelectorAll('.card.dp'),eqFit)}
+(function(){var _rf=renderAll;renderAll=function(){_rf.apply(this,arguments);fitAll()};
+ document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){setTimeout(fitAll,40)})});
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAll)})();
 </script>
 <script>blkPaint();document.body.classList.toggle('nocov',!COV);document.querySelectorAll('.cvsw').forEach(function(e){e.innerHTML=covSwHTML()});logoPv();</script>
 </body>
